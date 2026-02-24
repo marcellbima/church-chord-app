@@ -41,54 +41,6 @@ church-chord-app/
 
 ---
 
-## 🚀 Setup Step-by-Step
-
-### 1. Buat Firebase Project
-
-1. Buka [Firebase Console](https://console.firebase.google.com)
-2. Klik **Add Project** → beri nama → selesaikan wizard
-3. Di Project Settings → **Your apps** → klik ikon Web (`</>`)
-4. Daftarkan app, copy `firebaseConfig`
-
-### 2. Aktifkan Layanan Firebase
-
-Di Firebase Console:
-
-- **Authentication** → Sign-in method → aktifkan **Email/Password**
-- **Firestore Database** → Create database → pilih region terdekat (misalnya `asia-southeast1`)
-- **Storage** → Get started
-
-### 3. Buat Akun Admin
-
-Di Firebase Console → Authentication → **Add user**:
-- Masukkan email & password admin Anda
-
-### 4. Konfigurasi App
-
-Edit `src/lib/firebase.js`, isi dengan config Anda:
-
-```js
-const firebaseConfig = {
-  apiKey: "AIzaSy...",
-  authDomain: "nama-project.firebaseapp.com",
-  projectId: "nama-project",
-  storageBucket: "nama-project.appspot.com",
-  messagingSenderId: "123456789",
-  appId: "1:123456789:web:abc...",
-};
-```
-
-### 5. Install & Jalankan
-
-```bash
-npm install
-npm run dev
-```
-
-Buka `http://localhost:5173`
-
----
-
 ## 📱 Penggunaan
 
 ### User (publik)
@@ -122,41 +74,6 @@ Mendukung semua chord standar:
 | Slash | G/B, F/C, Am/E |
 | Extended | Cmaj7, G7, Am7, Dsus4 |
 | Enharmonic | Db→C#, Eb→D#, Bb→A# |
-
-```js
-import { transposeChord, transposeAll, transposeKey } from "./lib/transpose";
-
-transposeChord("Am", 2)          // → "Bm"
-transposeChord("G/B", 1)         // → "G#/C"
-transposeChord("Cmaj7", -1)      // → "Bmaj7"
-transposeKey("C", 2)             // → "D"
-transposeKey("Am", 3)            // → "Cm"
-```
-
----
-
-## ☁️ Deploy
-
-### Firebase Hosting
-
-```bash
-npm install -g firebase-tools
-firebase login
-firebase init hosting    # pilih dist, SPA=yes
-npm run build
-firebase deploy
-```
-
-### Vercel (alternatif)
-
-```bash
-npm install -g vercel
-vercel --prod
-```
-
-> Pastikan environment variable Firebase Anda di-set jika menggunakan `.env`
-
----
 
 ## 🗄 Struktur Firestore
 
@@ -199,14 +116,13 @@ songs/                           ← Collection
 - **Cloud Firestore** — database chord & metadata lagu
 - **Firebase Storage** — penyimpanan PDF/gambar partitur
 - **PDF.js (CDN)** — render PDF di browser
-- **Firebase Hosting / Vercel** — deployment
+- **Vercel** — deployment
 
 ---
 
 ## 📦 Pengembangan Lanjutan (Opsaran)
 
 - [ ] Multi-user admin (role-based via Firestore)
-- [ ] Export chord sheet ke PDF
 - [ ] Import chord dari file teks/ChordPro
 - [ ] Pencarian chord otomatis dengan AI
 - [ ] Metronome terintegrasi
